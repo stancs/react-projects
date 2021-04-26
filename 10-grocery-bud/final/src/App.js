@@ -15,13 +15,13 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     if (!name) {
       showAlert(true, 'danger', 'please enter value');
     } else if (name && isEditing) {
       setList(
-        list.map((item) => {
+        list.map(item => {
           if (item.id === editID) {
             return { ...item, title: name };
           }
@@ -48,12 +48,12 @@ function App() {
     showAlert(true, 'danger', 'empty list');
     setList([]);
   };
-  const removeItem = (id) => {
+  const removeItem = id => {
     showAlert(true, 'danger', 'item removed');
-    setList(list.filter((item) => item.id !== id));
+    setList(list.filter(item => item.id !== id));
   };
-  const editItem = (id) => {
-    const specificItem = list.find((item) => item.id === id);
+  const editItem = id => {
+    const specificItem = list.find(item => item.id === id);
     setIsEditing(true);
     setEditID(id);
     setName(specificItem.title);
@@ -73,7 +73,7 @@ function App() {
             className='grocery'
             placeholder='e.g. eggs'
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
           />
           <button type='submit' className='submit-btn'>
             {isEditing ? 'edit' : 'submit'}
